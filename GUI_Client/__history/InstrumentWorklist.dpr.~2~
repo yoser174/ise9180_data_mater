@@ -1,0 +1,15 @@
+program InstrumentWorklist;
+
+uses
+  Forms,
+  UnitMain in 'UnitMain.pas' {FormMain};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.Title := 'Instrument Worklist';
+  Application.CreateForm(TFormMain, FormMain);
+  Application.Run;
+end.

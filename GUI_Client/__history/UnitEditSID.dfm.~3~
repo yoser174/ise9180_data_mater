@@ -1,0 +1,41 @@
+object frmEditSID: TfrmEditSID
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'frmEditSID'
+  ClientHeight = 115
+  ClientWidth = 358
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 19
+  object Label1: TLabel
+    Left = 8
+    Top = 27
+    Width = 74
+    Height = 19
+    Caption = 'Sample ID'
+  end
+  object Button1: TButton
+    Left = 208
+    Top = 64
+    Width = 129
+    Height = 33
+    Caption = 'Simpan'
+    Default = True
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 104
+    Top = 24
+    Width = 233
+    Height = 27
+    TabOrder = 1
+    Text = 'Edit1'
+  end
+end

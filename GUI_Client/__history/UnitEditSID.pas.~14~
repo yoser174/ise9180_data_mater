@@ -1,0 +1,47 @@
+unit UnitEditSID;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.Win.ADODB, UnitMain;
+
+type
+  TfrmEditSID = class(TForm)
+    Button1: TButton;
+    edSID: TEdit;
+    Label1: TLabel;
+    lblSEQ: TLabel;
+    cmdUpdate: TADOCommand;
+    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Seq: String;
+  end;
+
+var
+  frmEditSID: TfrmEditSID;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmEditSID.Button1Click(Sender: TObject);
+begin
+if Q then
+
+end;
+
+procedure TfrmEditSID.FormShow(Sender: TObject);
+begin
+  lblSEQ.Caption := Seq;
+  frmEditSID.Caption := Seq;
+  edSID.Text := '';
+  edSID.SetFocus;
+end;
+
+end.
