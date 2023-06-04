@@ -96,7 +96,7 @@ begin
   cmdUpdate.Execute;
   BtnRefreshClick(self);
   ShowMessage
-    ('proses pengiriman ke HOST. mohon tunggu sekitar 5 detik sebelum cek ke Infinity.');
+    ('Pengiriman ke HOST berhasil. Harap sekitar 5 detik sebelum cek ke Infinity.');
 end;
 
 procedure TFormMain.BtnRefreshClick(Sender: TObject);
@@ -155,12 +155,13 @@ begin
 
   if ADODSMapped.Active then
     ADODSMapped.Active := False;
-  sSQL := ' SELECT distinct sample_id,host_sample_id,audit_date  ';
+  sSQL := ' SELECT distinct sample_id,host_sample_id, max(audit_date) as audit_date  ';
   sSQL := sSQL + ' FROM  ';
   sSQL := sSQL + ' instrument_result ';
   sSQL := sSQL + ' WHERE host_sample_id is not null  ';
   sSQL := sSQL + ' AND DATE(audit_date) = ' +
     QuotedStr(sy + '-' + sm + '-' + sd);
+  sSQL := sSQL + ' group by sample_id,host_sample_id ';
   sSQL := sSQL + ' ORDER BY id desc ';
 
   ADODSMapped.CommandText := sSQL;
@@ -213,11 +214,12 @@ begin
 
   if ADODSMapped.Active then
     ADODSMapped.Active := False;
-  sSQL := ' SELECT distinct sample_id,host_sample_id,audit_date  ';
+  sSQL := ' SELECT distinct sample_id,host_sample_id,max(audit_date) as audit_date  ';
   sSQL := sSQL + ' FROM  ';
   sSQL := sSQL + ' instrument_result ';
   sSQL := sSQL + ' WHERE ';
   sSQL := sSQL + ' DATE(audit_date) = ' + QuotedStr(sy + '-' + sm + '-' + sd);
+  sSQL := sSQL + ' GROUP BY sample_id,host_sample_id ';
   sSQL := sSQL + ' ORDER BY id ';
 
   ADODSMapped.CommandText := sSQL;

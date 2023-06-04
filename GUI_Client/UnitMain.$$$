@@ -4,7 +4,7 @@ object FormMain: TFormMain
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Instrument Worklist'
   ClientHeight = 551
-  ClientWidth = 759
+  ClientWidth = 883
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,21 +20,18 @@ object FormMain: TFormMain
   object GroupBox2: TGroupBox
     Left = 0
     Top = 0
-    Width = 759
+    Width = 883
     Height = 551
     Align = alClient
     Caption = 'Mapped'
     TabOrder = 0
-    ExplicitLeft = 297
-    ExplicitWidth = 286
     object Panel2: TPanel
       Left = 2
       Top = 21
-      Width = 755
+      Width = 879
       Height = 41
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 282
       object Label2: TLabel
         Left = 16
         Top = 11
@@ -55,8 +52,9 @@ object FormMain: TFormMain
     object DBGrid2: TDBGrid
       Left = 2
       Top = 62
-      Width = 452
+      Width = 454
       Height = 487
+      Cursor = crHandPoint
       Align = alClient
       DataSource = DSMapped
       Options = [dgTitles, dgIndicator, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -67,12 +65,13 @@ object FormMain: TFormMain
       TitleFont.Height = -16
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnCellClick = DBGrid2CellClick
       Columns = <
         item
           Expanded = False
           FieldName = 'host_sample_id'
           Title.Caption = 'Seq'
-          Width = 128
+          Width = 100
           Visible = True
         end
         item
@@ -95,23 +94,22 @@ object FormMain: TFormMain
       Top = 29
       Width = 112
       Height = 27
-      Date = 42820.895811527780000000
-      Time = 42820.895811527780000000
+      Date = 42820.000000000000000000
+      Time = 0.895811527778278100
       TabOrder = 2
       OnChange = dtpTglChange
     end
     object pnlDtl: TPanel
-      Left = 454
+      Left = 456
       Top = 62
-      Width = 303
+      Width = 425
       Height = 487
       Align = alRight
       TabOrder = 3
-      ExplicitLeft = 616
       object DBGrid1: TDBGrid
         Left = 1
         Top = 49
-        Width = 301
+        Width = 423
         Height = 396
         Align = alClient
         DataSource = DataSource1
@@ -126,13 +124,10 @@ object FormMain: TFormMain
       object Panel1: TPanel
         Left = 1
         Top = 445
-        Width = 301
+        Width = 423
         Height = 41
         Align = alBottom
         TabOrder = 1
-        ExplicitLeft = 192
-        ExplicitTop = 376
-        ExplicitWidth = 185
         object btnEdit: TButton
           Left = 5
           Top = 6
@@ -140,6 +135,7 @@ object FormMain: TFormMain
           Height = 27
           Caption = 'Edit Sample ID'
           TabOrder = 0
+          OnClick = btnEditClick
         end
         object btnKirim: TButton
           Left = 168
@@ -148,12 +144,13 @@ object FormMain: TFormMain
           Height = 27
           Caption = 'Kirim ke HOST'
           TabOrder = 1
+          OnClick = btnKirimClick
         end
       end
       object lblSID: TPanel
         Left = 1
         Top = 1
-        Width = 301
+        Width = 423
         Height = 48
         Align = alTop
         TabOrder = 2
@@ -170,9 +167,9 @@ object FormMain: TFormMain
     end
   end
   object ADOMySQL: TADOConnection
-    Connected = True
     ConnectionString = 'Provider=MSDASQL.1;Persist Security Info=False;Data Source=LIS;'
     LoginPrompt = False
+    Provider = 'MSDASQL.1'
     Left = 224
     Top = 64
   end
@@ -190,7 +187,6 @@ object FormMain: TFormMain
     Top = 160
   end
   object ADODSMapped: TADODataSet
-    Active = True
     Connection = ADOMySQL
     CursorType = ctStatic
     CommandText = 
@@ -222,7 +218,6 @@ object FormMain: TFormMain
     Top = 368
   end
   object qDtl: TADOQuery
-    Active = True
     Connection = ADOMySQL
     CursorType = ctStatic
     Parameters = <>
@@ -231,7 +226,7 @@ object FormMain: TFormMain
       'FROM'
       'instrument_result'
       'WHERE'
-      'host_sample_id = '#39'111111111-1'#39
+      'host_sample_id = '#39'253'#39
       'ORDER BY id desc')
     Left = 480
     Top = 24
@@ -240,5 +235,15 @@ object FormMain: TFormMain
     DataSet = qDtl
     Left = 538
     Top = 29
+  end
+  object cmdUpdate: TADOCommand
+    Connection = ADOMySQL
+    Parameters = <>
+    Left = 769
+    Top = 467
+  end
+  object FDConnMySQL: TFDConnection
+    Left = 144
+    Top = 160
   end
 end

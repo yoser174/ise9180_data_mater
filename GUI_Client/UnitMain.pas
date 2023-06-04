@@ -5,7 +5,9 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Grids, DBGrids, ExtCtrls, Buttons, ComCtrls, DB, ADODB,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client;
 
 type
   TFormMain = class(TForm)
@@ -32,6 +34,7 @@ type
     btnKirim: TButton;
     DBText1: TDBText;
     cmdUpdate: TADOCommand;
+    FDConnMySQL: TFDConnection;
     procedure FormActivate(Sender: TObject);
     procedure BtnRefreshClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
